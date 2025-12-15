@@ -61,13 +61,12 @@ const DEFAULT_USER: UserProfile = {
 
 // --- 2. MODAL COMPONENTS ---
 
-// A. SETTINGS MODAL (With Modes & Goal Creation)
+// A. SETTINGS MODAL (Fixed: Added Scrollbar for small screens)
 function BudgetSettingsModal({ isOpen, onClose, userData, onSave, isDarkMode, isSemesterMode, setIsSemesterMode, isSurvivalMode, setIsSurvivalMode }: any) {
   const [income, setIncome] = useState(userData.monthlyIncome);
   const [bills, setBills] = useState<Bill[]>(userData.fixedExpenses);
   const [goals, setGoals] = useState<SavingsGoal[]>(userData.savingsGoals);
   
-  // Inputs
   const [newBillTitle, setNewBillTitle] = useState('');
   const [newBillAmount, setNewBillAmount] = useState('');
   const [newGoalTitle, setNewGoalTitle] = useState('');
@@ -88,7 +87,6 @@ function BudgetSettingsModal({ isOpen, onClose, userData, onSave, isDarkMode, is
 
   if (!isOpen) return null;
 
-  // Bill Logic
   const handleAddBill = () => {
     if (!newBillTitle || !newBillAmount) return;
     const newBill: Bill = { id: Date.now().toString(), title: newBillTitle, amount: parseFloat(newBillAmount) };
@@ -97,7 +95,6 @@ function BudgetSettingsModal({ isOpen, onClose, userData, onSave, isDarkMode, is
   };
   const removeBill = (id: string) => setBills(bills.filter((b) => b.id !== id));
 
-  // Goal Logic
   const handleAddGoal = () => {
     if (!newGoalTitle || !newGoalTarget) return;
     const newGoal: SavingsGoal = { 
@@ -117,7 +114,8 @@ function BudgetSettingsModal({ isOpen, onClose, userData, onSave, isDarkMode, is
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-end sm:items-center justify-center z-50 p-0 sm:p-4">
-      <div className={`${modalBg} w-full sm:max-w-md sm:rounded-3xl rounded-t-3xl border backdrop-blur-xl p-6 animate-in slide-in-from-bottom-10 duration-300 shadow-2xl h-[85vh] sm:h-auto overflow-y-auto`}>
+      {/* THE FIX IS IN THE LINE BELOW: sm:max-h-[85vh] */}
+      <div className={`${modalBg} w-full sm:max-w-md sm:rounded-3xl rounded-t-3xl border backdrop-blur-xl p-6 animate-in slide-in-from-bottom-10 duration-300 shadow-2xl h-[85vh] sm:h-auto sm:max-h-[85vh] overflow-y-auto`}>
         <div className="flex justify-between items-center mb-8">
           <h2 className={`text-2xl font-bold tracking-tight ${textMain}`}>Settings</h2>
           <button onClick={onClose} className={`p-2 rounded-full ${isDarkMode ? 'bg-white/10' : 'bg-black/5'}`}>✕</button>
