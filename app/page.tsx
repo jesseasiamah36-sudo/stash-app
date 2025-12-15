@@ -419,7 +419,7 @@ export default function StashDashboard() {
              {isSemesterMode && <span className="text-[10px] bg-blue-500 text-white px-2 py-0.5 rounded-full font-bold">SEMESTER MODE</span>}
              {isSurvivalMode && <span className="text-[10px] bg-red-500 text-white px-2 py-0.5 rounded-full font-bold animate-pulse">SURVIVAL MODE</span>}
            </div>
-           <h1 className={`text-4xl font-black tracking-tighter ${textMain}`}>Stash.</h1>
+           <h1 className={`text-4xl font-black tracking-tighter ${textMain}`}>Stash</h1>
         </div>
         <div className="flex gap-3">
           <button onClick={() => setIsDarkMode(!isDarkMode)} className={`w-12 h-12 rounded-full flex items-center justify-center text-xl transition-all ${isDarkMode ? 'bg-white/5 hover:bg-white/10' : 'bg-white shadow-sm hover:scale-105'}`}>{isDarkMode ? '☀️' : '🌑'}</button>
@@ -446,7 +446,7 @@ export default function StashDashboard() {
       {/* 2. DEBT TRACKER */}
       <div className="mb-8 z-10 relative">
          <div className="flex justify-between items-center mb-4">
-            <h3 className={`text-lg font-bold flex items-center gap-2 ${textMain}`}><Users size={18} className="text-purple-500"/> I.O.U Tracker</h3>
+            <h3 className={`text-lg font-bold flex items-center gap-2 ${textMain}`}><Users size={18} className="text-purple-500"/> Debt Tracker</h3>
             <button onClick={() => setIsDebtModalOpen(true)} className="text-xs font-bold text-purple-500 hover:text-purple-400">+ Add Debt</button>
          </div>
          <div className={`${cardStyle} p-4 rounded-3xl space-y-3`}>
