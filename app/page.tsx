@@ -309,7 +309,7 @@ function UpdateGoalModal({ isOpen, onClose, goal, onUpdate, onDelete, isDarkMode
 
 
 // --- 3. MAIN DASHBOARD ---
-export default function StashDashboard() {
+export default function PockeraDashboard() {
   const [userProfile, setUserProfile] = useState<UserProfile>(DEFAULT_USER);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   
@@ -331,7 +331,7 @@ export default function StashDashboard() {
   // --- PERSISTENCE ---
   useEffect(() => {
     // 🔥 UPDATED KEY: v7 (Forces a reset to new clean slate)
-    const savedData = localStorage.getItem('stash_data_v7');
+    const savedData = localStorage.getItem('Pockera_data_v7');
     if (savedData) {
       const parsed = JSON.parse(savedData);
       setUserProfile(parsed.profile || DEFAULT_USER);
@@ -347,7 +347,7 @@ export default function StashDashboard() {
   useEffect(() => {
     if (isLoaded) {
       const dataToSave = { profile: userProfile, transactions, isDarkMode, isSemesterMode, isSurvivalMode };
-      localStorage.setItem('stash_data_v7', JSON.stringify(dataToSave));
+      localStorage.setItem('Pockera_data_v7', JSON.stringify(dataToSave));
     }
   }, [userProfile, transactions, isDarkMode, isSemesterMode, isSurvivalMode, isLoaded]);
 
@@ -400,7 +400,7 @@ export default function StashDashboard() {
   const textSub = isDarkMode || isSurvivalMode ? 'text-slate-400' : 'text-slate-500';
   const cardStyle = isDarkMode || isSurvivalMode ? 'bg-slate-900/60 backdrop-blur-xl border border-white/5 shadow-2xl' : 'bg-white/80 backdrop-blur-xl border border-white/50 shadow-lg shadow-slate-200/50';
 
-  if (!isLoaded) return <div className="min-h-screen bg-slate-950 flex items-center justify-center text-white tracking-widest font-bold">LOADING STASH...</div>;
+  if (!isLoaded) return <div className="min-h-screen bg-slate-950 flex items-center justify-center text-white tracking-widest font-bold">LOADING POCKERA...</div>;
 
   return (
     <div className={`min-h-screen ${pageBg} font-sans p-6 relative transition-colors duration-500 selection:bg-emerald-500/30`}>
@@ -419,7 +419,7 @@ export default function StashDashboard() {
              {isSemesterMode && <span className="text-[10px] bg-blue-500 text-white px-2 py-0.5 rounded-full font-bold">SEMESTER MODE</span>}
              {isSurvivalMode && <span className="text-[10px] bg-red-500 text-white px-2 py-0.5 rounded-full font-bold animate-pulse">SURVIVAL MODE</span>}
            </div>
-           <h1 className={`text-4xl font-black tracking-tighter ${textMain}`}>Stash</h1>
+           <h1 className={`text-4xl font-black tracking-tighter ${textMain}`}>Pockera</h1>
         </div>
         <div className="flex gap-3">
           <button onClick={() => setIsDarkMode(!isDarkMode)} className={`w-12 h-12 rounded-full flex items-center justify-center text-xl transition-all ${isDarkMode ? 'bg-white/5 hover:bg-white/10' : 'bg-white shadow-sm hover:scale-105'}`}>{isDarkMode ? '☀️' : '🌑'}</button>
